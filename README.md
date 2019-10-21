@@ -14,20 +14,43 @@ fn main() {
 
 **Important `println!` is not an function. It's a macro in rust. (macro end with `!`)**
 
-**println! macro**
+---
 
-will accept an string, with `{}` as placeholder.
+## Macros!
 
-First string argument is **format strings**
-with **{}** as **format specifiers**.
+- Macros are like functions, but they're named with `!` at the end.
+- Can do generally very powerful stuff.
+  - They actually generate code at compile time!
+  - Think macro in `c` but more hygienic. More later!
+- Call and use macros like functions.
+- You can define your own with `macro_rules! macro_name` blocks.
+  - These are _very_ complicated. More later!
+- Because they're so powerful, a lot of common utilities are defined as macros.
+- **println! macro**
 
-`{}` specifier for primitives types.
+### `print!` & `println!`
 
-`{:?}` specifier for other types.
+- Print stuff out. Yay.
+- Use `{}` for general string interpolation, and `{:?}` for debug printing.
+  - Some types can only be printed with `{:?}`, like arrays and `Vec`s.
 
-`rustc hello.rs`
+```rust
+print!("{}, {}, {}", "foo", 3, true);
+// => foo, 3, true
+println!("{:?}, {:?}", "foo", [1, 2, 3]);
+// => "foo", [1, 2, 3]
+```
 
-Run the executables
+---
+
+### `format!`
+
+- Uses `println!`-style string interpolation to create formatted `String`s.
+
+```rust
+let fmted = format!("{}, {:x}, {:?}", 12, 155, Some("Hello"));
+// fmted == "12, 9b, Some("Hello")"
+```
 
 ---
 
